@@ -13,6 +13,8 @@ import com.example.selectlocalresourcetest.R;
  * Created by cjl on 2018/8/2.
  * =======================================
  * Nothing is true,everything is permitted.
+ * Glide的工具类：直接调用load,占位符与加载错误图不用重新设置
+ * 可在RequestOptions中调用.bitmapTransform(GlideUtils.getRoundOptions)来设置圆角
  */
 public class GlideUtils {
 

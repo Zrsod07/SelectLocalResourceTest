@@ -1,6 +1,8 @@
 package com.example.selectlocalresourcetest.sample.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.request.RequestOptions;
+import com.example.selectlocalresourcetest.PhototViewActivity;
 import com.example.selectlocalresourcetest.R;
 import com.example.selectlocalresourcetest.utils.GlideUtils;
 
@@ -65,7 +68,7 @@ public class ShowPhotoListAdapter extends RecyclerView.Adapter<ShowPhotoListAdap
 
         RequestOptions options = new RequestOptions()
                 .centerCrop()
-                .bitmapTransform(GlideUtils.getRoundOptions(context, 30));//圆角
+                .bitmapTransform(GlideUtils.getRoundOptions(context, 20));//圆角
         GlideUtils.load(context, imagepath, holder.image, options);
         holder.ckb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +86,20 @@ public class ShowPhotoListAdapter extends RecyclerView.Adapter<ShowPhotoListAdap
             }
         });
         holder.ckb.setChecked(isSelected.contains(position));//把选中的position放入isSelected
+//        //图片
+        holder.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, PhototViewActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putStringArrayList("mImages", (ArrayList<String>) list);
+                bundle.putInt("position",position);
+                bundle.putString("mDirPath",mDirPath + "/");
+                intent.putExtra("bundle",bundle);
+                context.startActivity(intent);
+            }
+        });
+
         setUpItemEvent(holder);
     }
 
@@ -123,10 +140,10 @@ public class ShowPhotoListAdapter extends RecyclerView.Adapter<ShowPhotoListAdap
 
         public MyViewHolde(View itemView, int width) {
             super(itemView);
-            image = (ImageView) itemView.findViewById(R.id.image);
+            image =  itemView.findViewById(R.id.image);
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(width, width);
             image.setLayoutParams(layoutParams);
-            ckb = (CheckBox) itemView.findViewById(R.id.ckb);
+            ckb =  itemView.findViewById(R.id.ckb);
         }
     }
 

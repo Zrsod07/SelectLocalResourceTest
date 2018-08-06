@@ -4,6 +4,7 @@ package com.example.selectlocalresourcetest.utils;
  * Created by cjl on 2018/8/2.
  * =======================================
  * Nothing is true,everything is permitted.
+ * 常量类
  */
 public class Constant {
     public static final String Files_Count = "count";

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.selectlocalresourcetest.utils.Constant;
 import com.example.selectlocalresourcetest.utils.GlideUtils;
+import com.example.selectlocalresourcetest.utils.SavePicByUrlUtils;
 
 import java.util.List;
 
@@ -19,15 +20,28 @@ public class MainActivity extends Activity {
     private static final int REQUEST_Q = 247;
     private Button btn;
 
+    String path;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        path="http://img.zcool.cn/community/01b34f58eee017a8012049efcfaf50.jpg@1280w_1l_2o_100sh.jpg";
         ima1 = findViewById(R.id.img_1);
         ima2 = findViewById(R.id.img_2);
         ima3 = findViewById(R.id.img_3);
         ima4 = findViewById(R.id.img_4);
         ima5 = findViewById(R.id.img_5);
+
+        GlideUtils.load(this,path,ima1,null);
+        //长按：保存图片
+        ima1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                SavePicByUrlUtils.saveImage2Photo(MainActivity.this,ima1);
+                return false;
+            }
+        });
         btn = findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,10 +73,9 @@ public class MainActivity extends Activity {
                 if (list.size() > 4) {
                     GlideUtils.load(this, list.get(4), ima5, options);
                 }
-
-
             }
-
         }
     }
+
+
 }

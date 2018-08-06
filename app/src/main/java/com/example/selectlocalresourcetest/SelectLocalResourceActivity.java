@@ -117,7 +117,6 @@ public class SelectLocalResourceActivity extends Activity implements ListImageDi
                 outRect.set(2, 2, 2, 2);
             }
         });
-
     }
 
     private void getBundleDatas() {
@@ -318,6 +317,7 @@ public class SelectLocalResourceActivity extends Activity implements ListImageDi
         mAdapter = new ShowPhotoListAdapter(this, getFiles(), mImgDir.getAbsolutePath(),filesCount);
         mRecyclerView.setAdapter(mAdapter);
         mImageCount.setText(totalCount + "张");
+//        itemOnClick(getFiles());
         mProgressDialog.dismiss();
     }
 
@@ -414,4 +414,22 @@ public class SelectLocalResourceActivity extends Activity implements ListImageDi
         mChooseDir.setText(floder.getName());
         mListImageDirPopupWindow.dismiss();
     }
+
+    private void itemOnClick(final List<String> mImages){
+        mAdapter.setOnItemClickListener(new ShowPhotoListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent=new Intent(SelectLocalResourceActivity.this,PhototViewActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putStringArrayList("mImages", (ArrayList<String>) mImages);
+                bundle.putInt("position",position);
+                bundle.putString("mDirPath",mImgDir.getAbsolutePath() + "/");
+                intent.putExtra("bundle",bundle);
+                startActivity(intent);
+            }
+        });
+
+
+    }
+
 }

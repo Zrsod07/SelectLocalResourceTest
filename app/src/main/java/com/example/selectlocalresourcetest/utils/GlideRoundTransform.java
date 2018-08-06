@@ -18,6 +18,7 @@ import java.security.MessageDigest;
  * Created by cjl on 2018/8/2.
  * =======================================
  * Nothing is true,everything is permitted.
+ * Glide 圆角
  */
 public class GlideRoundTransform extends BitmapTransformation{
     private static float radius = 0f;
