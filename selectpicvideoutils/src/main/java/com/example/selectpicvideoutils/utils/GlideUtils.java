@@ -39,6 +39,16 @@ public class GlideUtils {
     }
 
     /**
+     * 得到Request实例
+     * @return
+     */
+    public static RequestOptions getRequestOptions(){
+        RequestOptions options=new RequestOptions();
+        return options;
+    }
+
+
+    /**
      * 加载圆角的options
      * 在RequestOptions里调用.bitmapTransform(GlideUtils.getRoundOptions(Context context, int p))
      * @param context

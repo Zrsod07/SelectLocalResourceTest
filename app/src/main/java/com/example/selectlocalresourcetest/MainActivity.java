@@ -23,6 +23,8 @@ public class MainActivity extends Activity {
         ima5=findViewById(R.id.ima5);
 
         String imageUrl="https://goss.veer.com/creative/vcg/veer/800water/veer-167716257.jpg";
+
+        GlideUtils.getRequestOptions();
         GlideUtils.load(this,imageUrl,ima1,null);
         ima1.setOnClickListener(new View.OnClickListener() {
             @Override
